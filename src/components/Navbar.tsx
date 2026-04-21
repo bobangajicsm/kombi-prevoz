@@ -44,7 +44,7 @@ export default function Navbar() {
             Kontakt
           </a>
           <a
-            href="tel:+381621234567"
+            href="tel:+381653635339"
             className="bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-primary-dark transition"
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

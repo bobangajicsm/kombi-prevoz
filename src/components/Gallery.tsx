@@ -1,23 +1,29 @@
+"use client";
+
+import { useState } from "react";
+
 const images = [
   {
-    src: "https://images.pexels.com/photos/35831389/pexels-photo-35831389/free-photo-of-white-passenger-van-in-suburban-setting.jpeg?auto=compress&cs=tinysrgb&w=500",
-    alt: "Moderan putnički kombi",
+    src: "/images/viber_image_2026-04-21_11-30-12-452.jpg",
+    alt: "Rezervacija prevoza online",
   },
   {
-    src: "https://images.pexels.com/photos/9354755/pexels-photo-9354755.jpeg?auto=compress&cs=tinysrgb&w=500",
-    alt: "Kombi spolja",
+    src: "/images/viber_image_2026-04-21_11-30-13-608.jpg",
+    alt: "Obala Istre",
   },
   {
-    src: "https://images.pexels.com/photos/36377055/pexels-photo-36377055/free-photo-of-interior-of-spacious-black-leather-minivan.jpeg?auto=compress&cs=tinysrgb&w=500",
-    alt: "Enterijer kombija",
+    src: "/images/viber_image_2026-04-21_11-30-13-677.jpg",
+    alt: "Rovinj - Istra",
   },
   {
-    src: "https://images.pexels.com/photos/19871522/pexels-photo-19871522/free-photo-of-a-black-2023-mercedes-benz-sprinter-cargo-van.jpeg?auto=compress&cs=tinysrgb&w=500",
-    alt: "Mercedes Sprinter kombi",
+    src: "/images/viber_image_2026-04-21_11-45-41-871.jpg",
+    alt: "Mapa rute Novi Sad - Istra",
   },
 ];
 
 export default function Gallery() {
+  const [selected, setSelected] = useState<number | null>(null);
+
   return (
     <section id="o-nama" className="py-16 bg-white">
       <div className="max-w-6xl mx-auto px-4">
@@ -26,7 +32,8 @@ export default function Gallery() {
           {images.map((img, i) => (
             <div
               key={i}
-              className="aspect-[4/3] rounded-lg overflow-hidden shadow-md group"
+              className="aspect-[4/3] rounded-lg overflow-hidden shadow-md group cursor-pointer"
+              onClick={() => setSelected(i)}
             >
               <img
                 src={img.src}
@@ -38,6 +45,26 @@ export default function Gallery() {
           ))}
         </div>
       </div>
+
+      {selected !== null && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+          onClick={() => setSelected(null)}
+        >
+          <button
+            className="absolute top-4 right-4 text-white text-4xl leading-none hover:text-gray-300 transition"
+            onClick={() => setSelected(null)}
+          >
+            &times;
+          </button>
+          <img
+            src={images[selected].src}
+            alt={images[selected].alt}
+            className="max-w-full max-h-[90vh] rounded-lg object-contain"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </section>
   );
 }
